@@ -52,6 +52,7 @@ public class GackWorld extends World {
 		new Witch("Barbara", offices, 3, pond);
 		new Wizard("Elvee", offices, 1, chamberOfWizards);
 		new Wizard("Jacob", lund, 2, chamberOfWizards);
+		new AutoPerson("Professor Back End", dormitory, 5);
 		
 		lounge.gain(new Thing("Karl's glasses"));
 		
