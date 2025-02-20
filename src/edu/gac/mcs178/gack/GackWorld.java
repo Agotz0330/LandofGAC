@@ -1,6 +1,7 @@
 package edu.gac.mcs178.gack;
 
 import edu.gac.mcs178.gack.domain.AutoPerson;
+import edu.gac.mcs178.gack.domain.Ghost;
 import edu.gac.mcs178.gack.domain.Person;
 import edu.gac.mcs178.gack.domain.Place;
 import edu.gac.mcs178.gack.domain.Scroll;
@@ -25,6 +26,7 @@ public class GackWorld extends World {
 		Place pond = new Place("Pond");
 		//new lund added
 		Place lund = new Place("Lund");
+		Place soulJar = new Place("Soul Jar");
 		
 		foodService.addNewNeighbor("down", po);
 		po.addNewNeighbor("south", alumniHall);
@@ -53,6 +55,7 @@ public class GackWorld extends World {
 		new Wizard("Elvee", offices, 1, chamberOfWizards);
 		new Wizard("Jacob", lund, 2, chamberOfWizards);
 		new AutoPerson("Professor Back End", dormitory, 2);
+		new Ghost("President Abraham Lincoln", dormitory, 5, getPlayer(), soulJar);
 		
 		lounge.gain(new Thing("Karl's glasses"));
 		
