@@ -11,6 +11,7 @@ public class Ghost extends AutoPerson{
 	private int turn_count;
 	private Place soulJar;
 	private Boolean hasPossessed;
+	private Person victim;
 
 	public Ghost(String name, Place place, int threshold, Person target, Place soulJar) {
 		super(name, place, threshold);
@@ -18,6 +19,7 @@ public class Ghost extends AutoPerson{
 		turn_count = 0;
 		this.soulJar = soulJar;
 		hasPossessed = false;
+		this.victim = null;
 	}
 	
 	@Override
@@ -26,18 +28,26 @@ public class Ghost extends AutoPerson{
 			turn_count += 1;
 		}
 		List<Person> others = otherPeopleAtSamePlace();
-		if (others.contains(target)) {
-			possess();
-			hasPossessed = true;
-		}else {
+		//if (others.contains(target)) {
+			//possess();
+//			hasPossessed = true;
+	//	}else {
+		//	super.act();
+		//}
+		if (!others.isEmpty() & victim == null) {
+			Person victim = others.get(Utility.randInt(others.size()));
+			possess(victim);
+			this.victim = victim;
+		} else {
 			super.act();
-		}
 		if (turn_count == 3) {
-			turnIntoSoul(target);
+			turnIntoSoul(this.victim);
+			this.victim = null;
 		}
 	}
+	}
 	
-	public void possess(){
+	public void possess(Person victim){
 		say("OooOoOoOoO, I have enacted my revenge on " + target + "!!!!!!");
 	}
 	
