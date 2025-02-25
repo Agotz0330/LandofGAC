@@ -23,16 +23,6 @@ public class Ghost extends AutoPerson{
 	@Override
 	public void act() {
 		List<Person> others = otherPeopleAtSamePlace();
-		//if (others.contains(target)) {
-			//possess();
-//			hasPossessed = true;
-	//	}else {
-		//	super.act();
-		//}
-		if (turn_count > 3) {
-			turnIntoSoul(this.victim);
-			this.victim = null;
-		}
 		if (!others.isEmpty() && this.victim == null) {
 			Person victim = others.get(Utility.randInt(others.size()));
 			possess(victim);
@@ -42,10 +32,37 @@ public class Ghost extends AutoPerson{
 	}
 	public void maybeAct() { //override
 		if(hasPossessed) {
+			if (turn_count > 5) {
+				turnIntoSoul(this.victim);
+				this.victim = null;
+			}
+			if(victim.getPlace() != this.getPlace()) {
+				this.moveTo(victim.getPlace());
+			}
 			this.turn_count += 1;
-			this.moveTo(victim.getPlace());
 		} else {
 		super.maybeAct();
+		}
+		
+	}
+	
+	public void greet(List<Person> people) {
+		if (this.hasPossessed) {
+			if (turn_count == 2) {
+				this.say("You can't run " + victim.getName() + "!");
+			}
+			if (turn_count == 3) {
+				this.say("You can't hide " + victim.getName() + "!");
+			}
+			if (turn_count == 4) {
+				this.say("There is nowhere to go " + victim.getName() + "!");
+			}
+			if (turn_count == 5) {
+				this.say("I have collected your Soul, " + victim.getName() + "!");
+			}
+		}
+		else {
+		super.greet(people);
 		}
 	}
 		

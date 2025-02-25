@@ -46,6 +46,7 @@ public class GackWorld extends World {
 		lounge.addNewNeighbor("south", offices);
 		computerLab.addNewNeighbor("east", lounge);
 		offices.addNewNeighbor("north", lounge);
+		lounge.addNewNeighbor("down", goodShipOlin);
 		//make lund a neighbor
 		dormitory.addNewNeighbor("northeast", lund);
 		lund.addNewNeighbor("southwest", dormitory);
@@ -56,7 +57,7 @@ public class GackWorld extends World {
 		new Wizard("Elvee", offices, 1, chamberOfWizards);
 		new Wizard("Jacob", lund, 2, chamberOfWizards);
 		new AutoPerson("Professor Back End", dormitory, 2);
-		new Ghost("President Abraham Lincoln", dormitory, 5, soulJar);
+		new Ghost("President Abraham Lincoln", dormitory, 3, soulJar);
 		
 		lounge.gain(new Thing("Karl's glasses"));
 		
